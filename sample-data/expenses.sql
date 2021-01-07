@@ -1,4 +1,10 @@
-CREATE TABLE expenses ( Code int, Amount money, Description text);
+create UNIQUE index idx_expensecode on users (expensecode);
+
+CREATE TABLE expenses ( Code int, Amount money, Description text,
+CONSTRAINT fk_expensecode
+      FOREIGN KEY(Code) 
+	  REFERENCES users(expensecode)
+);
 INSERT INTO expenses (Code, Amount, Description) valuess ('100', '25.50', 'Lunch with clients');
 INSERT INTO expenses (Code, Amount, Description) values ('300', '55.00', 'Dinner with clients');
 INSERT INTO expenses (Code, Amount, Description) values ('200', '75.00', 'Team Lunch');
